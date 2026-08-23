@@ -442,7 +442,7 @@ public class FMRadioService extends Service
             try {
                 synchronized (mRecordSinkLock) {
                     Log.d(LOGTAG, "waiting for play to complete");
-                    mRecordSinkLock.wait();
+                    mRecordSinkLock.wait(3000);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -532,7 +532,7 @@ public class FMRadioService extends Service
                     }
                 }
             } catch (Exception e) {
-                Log.d(LOGTAG, "RecordSinkThread.run, thread is interrupted, need exit thread");
+                Log.e(LOGTAG, "RecordSinkThread.run crashed with exception", e);
             } finally {
                 Log.d(LOGTAG,
                         "RecordSinkThread: stopRecordSink called stopping mAudioTrack and "
